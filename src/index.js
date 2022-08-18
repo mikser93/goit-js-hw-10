@@ -34,7 +34,6 @@ function search(input) {
         return; //?
       }
       if (countries.length > 1 && countries.length <= 10) {
-        ///більше ніж 10 не виводити
         renderContryList(countries);
       } else {
         renderContryCard(countries);
