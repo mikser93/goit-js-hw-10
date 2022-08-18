@@ -1,7 +1,7 @@
 import './css/styles.css';
 import debounce from 'lodash.debounce';
 import { Notify } from 'notiflix';
-import { fetchCountries } from './fetchCountries.js'; //ще не експортив
+import { fetchCountries } from './fetchCountries.js';
 
 const DEBOUNCE_DELAY = 300;
 const input = document.querySelector('#search-box');
@@ -27,13 +27,14 @@ function search(input) {
   fetchCountries(inputSearch)
     .then(countries => {
       clearPage(); //Якщо користувач повністю очищає поле пошуку, то HTTP-запит не виконується, а розмітка списку країн або інформації про країну зникає.
-      if (countries.lenght > 10) {
+      if (countries.length > 10) {
         Notify.info(
           'Too many matches found. Please enter a more specific name.'
         );
         return; //?
       }
-      if (countries.lenght > 1 && countries.lenght <= 10) {
+      if (countries.length > 1 && countries.length <= 10) {
+        ///більше ніж 10 не виводити
         renderContryList(countries);
       } else {
         renderContryCard(countries);
